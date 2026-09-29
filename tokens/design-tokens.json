@@ -1,0 +1,16 @@
+{
+  "$description": "Finpath design tokens, from the Finpath case study (W3C design-tokens format).",
+  "color": {
+    "lime":      { "$type": "color", "$value": "#D7FF67", "$description": "Brand accent, AI moments, positive values" },
+    "black":     { "$type": "color", "$value": "#0A0A0A", "$description": "App background" },
+    "surface-1": { "$type": "color", "$value": "#161616", "$description": "Panels" },
+    "surface-2": { "$type": "color", "$value": "#212121", "$description": "Raised elements, inputs" },
+    "white":     { "$type": "color", "$value": "#FCFCFC", "$description": "Primary text" },
+    "negative":  { "$type": "color", "$value": "#FF6B6B", "$description": "Outflows" }
+  },
+  "font": {
+    "family": { "$type": "fontFamily", "$value": ["Urbanist", "system-ui", "sans-serif"] },
+    "weight": { "light": { "$type": "fontWeight", "$value": 300 }, "regular": { "$type": "fontWeight", "$value": 400 }, "semibold": { "$type": "fontWeight", "$value": 600 } }
+  },
+  "radius": { "panel": { "$type": "dimension", "$value": "22px" }, "pill": { "$type": "dimension", "$value": "999px" } }
+}
