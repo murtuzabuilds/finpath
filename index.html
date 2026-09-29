@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#0A0A0A">
+<title>Finpath · AI finance dashboard (coded prototype)</title>
+<meta name="description" content="Coded prototype of Finpath: spending intelligence, card management, analytics and an AI assistant that finds real savings.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Urbanist:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="tokens/tokens.css">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="top">
+  <a class="logo" href="#dashboard" aria-label="Finpath home"><svg viewBox="0 0 40 40" width="26" height="26" aria-hidden="true"><path d="M20 4 L27 11 L23 15 L20 12 L12 20 L15 23 L11 27 L4 20 Z M20 36 L13 29 L17 25 L20 28 L28 20 L25 17 L29 13 L36 20 Z" fill="var(--lime)"/></svg><b>Finpath</b></a>
+  <nav class="tabs" aria-label="Main">
+    <a href="#dashboard" data-v="dashboard">Dashboard</a><a href="#payments" data-v="payments">Payments</a><a href="#analytics" data-v="analytics">Analytics</a><a href="#cards" data-v="cards">Cards</a><a href="#ai" data-v="ai">AI Finpath</a>
+  </nav>
+  <div class="tr"><span class="seg"><button type="button" class="on">Dark</button><button type="button" disabled title="Light theme is in the Figma file, not this prototype">Light</button></span><span class="avatar" aria-hidden="true">S</span></div>
+</header>
+
+<main>
+  <!-- DASHBOARD -->
+  <section class="view" id="dashboard">
+    <div class="hello"><h1>Hello, Steven</h1><span class="card-pill">•••• 3625</span></div>
+    <div class="grid">
+      <article class="panel bal">
+        <div class="ph"><small>Total Balance</small><span class="seg sm"><button type="button">EUR</button><button type="button" class="on">USD</button></span></div>
+        <p class="big" id="total"></p>
+        <div class="bubbles" id="bubbles"></div>
+        <div class="row2"><button type="button" class="ghost" data-go="payments">Receive Money</button><button type="button" class="ghost" data-go="payments">Send Money</button></div>
+      </article>
+      <article class="panel inv"><div class="ph"><b>Investments</b><a class="arrow" href="#analytics" aria-label="Open analytics">↗</a></div><ul class="stocks" id="stocks"></ul></article>
+      <article class="panel ai-mini"><div class="ph"><b><span class="spark">✦</span> AI Assistant</b><a class="arrow" href="#ai" aria-label="Open AI Finpath">↗</a></div>
+        <div class="wave" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+        <p class="q">What can I help you with today?</p>
+        <div class="chips" data-ask><button type="button">Plan my monthly budget</button><button type="button">Detect unusual transactions</button><button type="button">Forecast balance</button></div>
+        <form class="ask" data-askform><input placeholder="Ask anything" aria-label="Ask Finpath"><button aria-label="Send">↑</button></form>
+      </article>
+      <article class="panel cash"><div class="ph"><div><b>Cashflow</b><p class="mid" id="cashTotal"></p></div><span class="seg sm"><button type="button" class="on">Weekly</button></span></div>
+        <div class="legend"><span class="on" data-series="net">Net</span><span data-series="income">Income</span><span data-series="expense">Expense</span></div>
+        <div class="bars" id="bars"></div></article>
+      <article class="panel txn"><div class="ph"><b>Transactions</b><a class="arrow" href="#payments" aria-label="All transactions">↗</a></div><ul class="tx" id="tx"></ul></article>
+    </div>
+  </section>
+
+  <!-- PAYMENTS -->
+  <section class="view" id="payments" hidden>
+    <div class="hello"><h1>Payments</h1></div>
+    <div class="grid two">
+      <article class="panel"><div class="ph"><b>Send money</b></div>
+        <form class="send" id="sendForm"><label>To<select id="to"><option>Liam Harper</option><option>Emily Thomas</option><option>Parkview Apts</option></select></label>
+          <label>Amount<input id="amt" inputmode="decimal" value="120"></label><label>From<select id="from"></select></label>
+          <button class="lime">Review payment</button><p class="note" id="sendNote">Prototype only. No money moves.</p></form></article>
+      <article class="panel"><div class="ph"><b>All transactions</b><small id="txCount"></small></div><ul class="tx long" id="txAll"></ul></article>
+    </div>
+  </section>
+
+  <!-- ANALYTICS -->
+  <section class="view" id="analytics" hidden>
+    <div class="hello"><h1>Analytics</h1><small class="mute">Last 90 days</small></div>
+    <div class="grid two">
+      <article class="panel"><div class="ph"><b>Where your money goes</b></div><div class="donut-wrap"><svg id="donut" viewBox="0 0 200 200" width="220" height="220" aria-label="Spending by category"></svg><ul class="cats" id="cats"></ul></div></article>
+      <article class="panel"><div class="ph"><b>Financial health</b></div><ul class="health" id="health"></ul></article>
+    </div>
+  </section>
+
+  <!-- CARDS -->
+  <section class="view" id="cards" hidden>
+    <div class="hello"><h1>Cards</h1></div>
+    <div class="cardrow" id="cardrow"></div>
+  </section>
+
+  <!-- AI FINPATH -->
+  <section class="view ai" id="ai" hidden>
+    <div class="ai-hero"><div class="flame" aria-hidden="true"></div><p>Hi Steven,<br><b>What can I help you with today?</b></p></div>
+    <div class="starters" data-ask><button type="button"><i>▣</i>Capital overview</button><button type="button"><i>↻</i>Recent transactions</button><button type="button"><i>⚠</i>Detect unusual transactions</button><button type="button"><i>↗</i>Forecast balance</button></div>
+    <ol class="chat" id="chat" aria-live="polite"></ol>
+    <div class="chips wide" data-ask><button type="button">Plan my monthly budget</button><button type="button">Anything I should fix?</button><button type="button">Where does my money go?</button></div>
+    <form class="ask big" data-askform><input placeholder="Ask a question or make a request" aria-label="Ask Finpath"><span class="tagp">◎ Deep Think</span><button aria-label="Send">↑</button></form>
+  </section>
+</main>
+<footer class="foot">Coded prototype of the Finpath case study · sample data · designed and built by <a href="https://murtuzabuilds.com">Murtuza</a> · <a href="https://github.com/murtuzabuilds/finpath">GitHub</a></footer>
+<script type="module" src="app.js"></script>
+</body>
+</html>
